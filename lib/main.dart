@@ -11,6 +11,8 @@ import 'package:wantsbucks_admin/login.dart';
 import 'package:wantsbucks_admin/other%20pages/loading.dart';
 import 'package:wantsbucks_admin/other%20pages/something_went_wrong.dart';
 import 'package:wantsbucks_admin/providers/auth_provider.dart';
+import 'package:wantsbucks_admin/providers/custom_ads_provider.dart';
+import 'package:wantsbucks_admin/providers/dashboard_provider.dart';
 import 'package:wantsbucks_admin/theming/theme.dart';
 
 void main() {
@@ -85,6 +87,10 @@ class _MainAppState extends State<MainApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<AuthProvider>(create: (_) => AuthProvider()),
+        ChangeNotifierProvider<DashboardProvider>(
+            create: (_) => DashboardProvider()),
+        ChangeNotifierProvider<CustomAdsProvider>(
+            create: (_) => CustomAdsProvider()),
       ],
       child: MaterialApp(
         title: 'wantsBucks Admin',
