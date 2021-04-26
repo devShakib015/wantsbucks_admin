@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:wantsbucks_admin/other%20pages/custom_ads_page.dart';
 import 'package:wantsbucks_admin/other%20pages/loading.dart';
 import 'package:wantsbucks_admin/other%20pages/something_went_wrong.dart';
+import 'package:wantsbucks_admin/other%20pages/withdrawls_list.dart';
 import 'package:wantsbucks_admin/providers/auth_provider.dart';
 import 'package:wantsbucks_admin/providers/dashboard_provider.dart';
 import 'package:wantsbucks_admin/theming/color_constants.dart';
@@ -96,7 +97,7 @@ class _AdminAppState extends State<AdminApp> {
                       child: Column(
                     children: [
                       _dashCard(
-                          data: _data["totalUsers"],
+                          data: _data["totalUsers"] - 3,
                           color: mainColor,
                           title: "Total Users"),
                       _dashCard(
@@ -104,7 +105,16 @@ class _AdminAppState extends State<AdminApp> {
                           color: dangerColor,
                           title: "Totat Payable"),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Withdrawls(),
+                            ),
+                          ).then((value) {
+                            setState(() {});
+                          });
+                        },
                         child: _dashCard(
                             color: Colors.lightBlue,
                             data: _data["totalWithdrawRequest"],

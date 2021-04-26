@@ -13,6 +13,7 @@ import 'package:wantsbucks_admin/other%20pages/something_went_wrong.dart';
 import 'package:wantsbucks_admin/providers/auth_provider.dart';
 import 'package:wantsbucks_admin/providers/custom_ads_provider.dart';
 import 'package:wantsbucks_admin/providers/dashboard_provider.dart';
+import 'package:wantsbucks_admin/providers/withdraw_provider.dart';
 import 'package:wantsbucks_admin/theming/theme.dart';
 
 void main() {
@@ -91,6 +92,8 @@ class _MainAppState extends State<MainApp> {
             create: (_) => DashboardProvider()),
         ChangeNotifierProvider<CustomAdsProvider>(
             create: (_) => CustomAdsProvider()),
+        ChangeNotifierProvider<WithdrawProvider>(
+            create: (_) => WithdrawProvider()),
       ],
       child: MaterialApp(
         title: 'wantsBucks Admin',
