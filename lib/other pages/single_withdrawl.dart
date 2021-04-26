@@ -33,11 +33,30 @@ class _SingleWithdrawlState extends State<SingleWithdrawl> {
               if (widget.data["status"] == "pending")
                 ElevatedButton(
                     onPressed: () async {
-                      await Provider.of<WithdrawProvider>(context,
-                              listen: false)
-                          .completeWithdraw(widget.id);
+                      showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                content: Text(
+                                    "Are you sure to complete this withdraw?"),
+                                actions: [
+                                  ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text("Cancel")),
+                                  ElevatedButton(
+                                      onPressed: () async {
+                                        await Provider.of<WithdrawProvider>(
+                                                context,
+                                                listen: false)
+                                            .completeWithdraw(widget.id);
+                                        Navigator.pop(context);
 
-                      Navigator.pop(context);
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text("Sure"))
+                                ],
+                              ));
                     },
                     child: Text("complete")),
               SelectableText("Phone: ${widget.data["phone"]}"),
@@ -52,13 +71,33 @@ class _SingleWithdrawlState extends State<SingleWithdrawl> {
               if (widget.data["status"] == "pending")
                 ElevatedButton(
                   onPressed: () async {
-                    await Provider.of<WithdrawProvider>(context, listen: false)
-                        .cancelWithdraw(
-                            amount: widget.data["amount"],
-                            id: widget.id,
-                            uid: widget.data["userId"]);
+                    showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                              content:
+                                  Text("Are you sure to cancel this withdraw?"),
+                              actions: [
+                                ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text("Cancel")),
+                                ElevatedButton(
+                                    onPressed: () async {
+                                      await Provider.of<WithdrawProvider>(
+                                              context,
+                                              listen: false)
+                                          .cancelWithdraw(
+                                              amount: widget.data["amount"],
+                                              id: widget.id,
+                                              uid: widget.data["userId"]);
+                                      Navigator.pop(context);
 
-                    Navigator.pop(context);
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text("Sure"))
+                              ],
+                            ));
                   },
                   child: Text("cancel"),
                   style: ButtonStyle(
